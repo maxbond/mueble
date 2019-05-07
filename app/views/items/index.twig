@@ -1,0 +1,11 @@
+{% extends "layouts/main.twig" %}
+{% block title %}item.name - магазин мебели{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <h1>{{ category.parent_name }} / {{ category.name }}</h1>
+            <h3>{{ item.name }}</h3>
+            <h3>{{ item.price }}</h3>
+        </div>
+    </div>
+{% endblock %}

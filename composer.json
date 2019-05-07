@@ -1,0 +1,26 @@
+{
+    "name": "maxbond/mueble",
+    "description": "Mueble application",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Maxim Bondarev",
+            "email": "macintosh.way@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=7.2",
+        "twig/twig": "^2.0",
+        "nikic/fast-route": "^2.0@dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "Maxbond\\Mueble\\": "system",
+            "App\\": "app"
+        },
+        "exclude-from-classmap": [
+            "/tests/"
+        ]
+    }
+}

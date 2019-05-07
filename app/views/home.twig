@@ -1,0 +1,14 @@
+{% extends "layouts/main.twig" %}
+{% block title %} список категорий {% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Магазин</h2>
+            <ul>
+                {% for category in categories %}
+                    <li>{{ category.name }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}
