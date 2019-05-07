@@ -12,7 +12,7 @@ class ViewEngineFactory
 {
     const SUFFIX = 'View';
 
-    const NAMESPACE = 'Maxbond\Mueble\View\\';
+    const NAMESPACE = 'Maxbond\Mueble\Views\\';
 
     /**
      * @param $config

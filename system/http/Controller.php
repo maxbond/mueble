@@ -91,6 +91,7 @@ abstract class Controller
                 $this->render('errors/404.twig', [], 404);
                 break;
         }
+        die();
     }
 
     /**

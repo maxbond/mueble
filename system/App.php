@@ -81,7 +81,7 @@ class App
         }
         $class = $parts[0];
         $method = $parts[1];
-        $object = (new $class($this, $variables));
+        $object = new $class($this, $variables);
         $object->$method();
     }
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Maxbond\Mueble\View;
+namespace Maxbond\Mueble\Views;
 
 use Maxbond\Mueble\Interfaces\ViewInterface;
 use Twig\Loader\FilesystemLoader;

@@ -4,6 +4,6 @@
 /.vscode
 /.vagrant
 /phpdocker
-/cache
+/cache/views
 /p
 docker-compose.yml
