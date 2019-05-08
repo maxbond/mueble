@@ -1,0 +1,8 @@
+{% extends "layouts/admin.twig" %}
+{% block title %} товар {% endblock %}
+{% block content %}
+    <h2>Редактировать товар</h2>
+    <form action="/admin/items/{{ item.id }}" method="post" enctype="multipart/form-data">
+        {% include "admin/items/form.twig" %}
+    </form>
+{% endblock %}

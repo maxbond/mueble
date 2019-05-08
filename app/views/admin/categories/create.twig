@@ -1,0 +1,8 @@
+{% extends "layouts/admin.twig" %}
+{% block title %} категория {% endblock %}
+{% block content %}
+    <h2>Добавить категорию</h2>
+<form action="/admin/categories" method="post" enctype="multipart/form-data">
+{% include "admin/categories/form.twig" %}
+</form>
+{% endblock %}

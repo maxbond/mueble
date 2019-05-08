@@ -1,0 +1,26 @@
+{% extends "layouts/admin.twig" %}
+{% block title %} список категорий {% endblock %}
+{% block content %}
+    <a class="btn btn-primary" href="/admin/categories/create">добавить</a>
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>имя</th>
+            <th>родитель</th>
+            <th colspan="2"></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for category in categories %}
+            <tr>
+                <td>{{ category.id }}</td>
+                <td class="{% if(category.parent_id==null) %}font-weight-bold{% endif %}">{{ category.name }}</td>
+                <td>{{ category.parent_name }}</td>
+                <td><a href="/admin/categories/{{ category.id }}/edit">ред.</a></td>
+                <td><a href="/admin/categories/{{ category.id }}/delete">уд.</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

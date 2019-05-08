@@ -1,0 +1,32 @@
+{% extends "layouts/admin.twig" %}
+{% block title %} список товаров {% endblock %}
+{% block content %}
+    <a class="btn btn-primary" href="/admin/items/create">добавить</a>
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>имя</th>
+            <th>категория</th>
+            <th>описание</th>
+            <th>цена</th>
+            <th>фото</th>
+            <th colspan="2"></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in items %}
+            <tr>
+                <td>{{ item.id }}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.category }}</td>
+                <td>{{ item.info }}</td>
+                <td>{{ item.price }}</td>
+                <td>{{ item.photo }}</td>
+                <td><a href="/admin/items/{{ item.id }}/edit">ред.</a></td>
+                <td><a href="/admin/items/{{ item.id }}/delete">уд.</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

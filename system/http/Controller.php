@@ -107,4 +107,10 @@ abstract class Controller
         echo $this->app->template->view($template,$variables);
         ob_end_flush();
     }
+
+    protected function redirect($url)
+    {
+        header("Location: {$url}");
+        die();
+    }
 }

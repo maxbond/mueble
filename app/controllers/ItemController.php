@@ -30,15 +30,50 @@ class ItemController extends Controller
         $this->categoriesRepository = $this->app->repositoryFactory->get('categories');
     }
 
-
+    /**
+     * Add item to basket
+     */
     public function item()
     {
-        $id = (int)$this->variables['id'];
-        $item = $this->itemsRepository->getItem($id);
-        if (!$item) {
-            $this->error(404);
+        $basket = $_SESSION['basket'] ?? [];
+        $basket[] = (int) $this->variables['id'];
+        $_SESSION['basket'] = $basket;
+        $item = $this->itemsRepository->getItem((int) $this->variables['id']);
+        $this->render('items/index.twig',compact('item'));
+    }
+
+    /**
+     * Basket
+     */
+    public function basket()
+    {
+        $basket = $_SESSION['basket'] ?? [];
+        if(count($basket)){
+            $items = $this->itemsRepository->getItemsInList($basket);
+            $this->render('items/basket.twig', compact('items'));
+        }else{
+            $this->render('items/empty_basket.twig', compact('items'));
         }
-        $category = $this->categoriesRepository->getCategory($item->category_id);
-        $this->render('items/index.twig', compact('item','category'));
+
+    }
+
+    /**
+     * Remove item from basket
+     */
+    public function remove()
+    {
+        $basket = $_SESSION['basket'] ?? [];
+        $basket = array_diff($basket,[(int) $this->variables['id']]);
+        $_SESSION['basket'] = $basket;
+        $this->redirect('/basket');
+    }
+
+    /**
+     * Complete order
+     */
+    public function done()
+    {
+        session_destroy();
+        $this->render('items/done.twig',[]);
     }
 }

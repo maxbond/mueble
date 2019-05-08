@@ -38,4 +38,16 @@ class AppController extends Controller
         $categories = $this->categoriesRepository->getTopLevel();
         $this->render('home.twig', compact('categories'));
     }
+
+    /**
+     * Categories list
+     */
+    public function category()
+    {
+        $items = $this->itemsRepository->getItemsInTopCategory((int) $this->variables['id']);
+        $category = $this->categoriesRepository->getCategory((int) $this->variables['id']);
+
+        $this->render('items/list.twig', compact('category','items'));
+    }
+
 }

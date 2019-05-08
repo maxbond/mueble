@@ -18,7 +18,8 @@ class CategoriesRepository extends BaseRepository implements CategoriesInterface
      */
     public function getCategories(): array
     {
-        return $this->dBDRiver->select("SELECT * FROM `{$this->table_name}`");
+        return $this->dBDRiver->select("SELECT cc.*,pc.name AS parent_name FROM `{$this->table_name}` cc 
+                        LEFT JOIN `{$this->table_name}` pc ON cc.parent_id = pc.id");
     }
 
     /**
@@ -27,7 +28,8 @@ class CategoriesRepository extends BaseRepository implements CategoriesInterface
      */
     public function getCategory(int $id)
     {
-        $category =$this->dBDRiver->select("SELECT cc.*,pc.name AS parent_name FROM `{$this->table_name}` cc LEFT JOIN `{$this->table_name}` pc ON cc.parent_id = pc.id WHERE cc.id=:id",
+        $category =$this->dBDRiver->select("SELECT cc.*,pc.name AS parent_name FROM `{$this->table_name}` cc 
+                        LEFT JOIN `{$this->table_name}` pc ON cc.parent_id = pc.id WHERE cc.id=:id",
             compact('id'));
 
         return $category[0] ?? null;

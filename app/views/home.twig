@@ -3,12 +3,23 @@
 {% block content %}
     <div class="row">
         <div class="col-md-12">
-            <h2>Магазин</h2>
-            <ul>
+            <h2>Категории</h2>
+            <div class="row">
+                {% set col = 1 %}
                 {% for category in categories %}
-                    <li>{{ category.name }}</li>
+                    <div class="col-md-3">
+                        <div class="card text-center" style="width: 18rem;">
+                            <div class="card-body">
+                                <img src="/public/img/category.svg" width="200" alt="категория товара {{ category.name }}">
+                                <h5 class="card-title">{{ category.name }}</h5>
+                                <a href="/categories/{{ category.id }}" class="btn btn-primary">перейти в категорию</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% set col = col + 1 %}
+                    {% if col == 4 %}<div class="w-100"></div>{% set col = 1 %}{% endif %}
                 {% endfor %}
-            </ul>
+            </div>
         </div>
     </div>
 {% endblock %}

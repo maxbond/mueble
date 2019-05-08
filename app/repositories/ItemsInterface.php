@@ -25,6 +25,20 @@ interface ItemsInterface
     public function getItemsInCategory(int $category_id) : array;
 
     /**
+     * Get all items in top category
+     * @param int $category_id
+     * @return array
+     */
+    public function getItemsInTopCategory(int $category_id) : array;
+
+    /**
+     * Get items in list
+     * @param array $list
+     * @return array
+     */
+    public function getItemsInList(array $list) : array;
+
+    /**
      * Create single item
      * @param array $data
      * @return mixed

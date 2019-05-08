@@ -1,0 +1,8 @@
+{% extends "layouts/admin.twig" %}
+{% block title %} категория {% endblock %}
+{% block content %}
+    <h2>Редактировать категорию</h2>
+    <form action="/admin/categories/{{ category.id }}" method="post" enctype="multipart/form-data">
+        {% include "admin/categories/form.twig" %}
+    </form>
+{% endblock %}

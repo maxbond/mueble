@@ -17,7 +17,8 @@ class ItemsRepository extends BaseRepository implements ItemsInterface
      */
     public function getItems(): array
     {
-        return $this->dBDRiver->select("SELECT * FROM `{$this->table_name}`");
+        return $this->dBDRiver->select("SELECT ii.*,cc.name as category FROM `{$this->table_name}` ii
+                    LEFT JOIN `categories` cc ON ii.category_id=cc.id");
     }
 
     /**
@@ -26,7 +27,8 @@ class ItemsRepository extends BaseRepository implements ItemsInterface
      */
     public function getItem(int $id)
     {
-        $item = $this->dBDRiver->select("SELECT * FROM `{$this->table_name}` WHERE id=:id",
+        $item = $this->dBDRiver->select("SELECT ii.*,cc.name as category FROM `{$this->table_name}` ii
+                    LEFT JOIN `categories` cc ON ii.category_id=cc.id WHERE ii.id=:id",
             compact('id'));
 
         return $item[0] ?? null;
@@ -38,8 +40,35 @@ class ItemsRepository extends BaseRepository implements ItemsInterface
      */
     public function getItemsInCategory(int $category_id): array
     {
-        return $this->dBDRiver->select("SELECT * FROM `{$this->table_name}` WHERE `category_id`=:category_id",
+        return $this->dBDRiver->select("SELECT ii.*,cc.name as category FROM `{$this->table_name}` ii
+                    LEFT JOIN `categories` cc ON ii.category_id=cc.id WHERE `category_id`=:category_id",
             compact('category_id'));
+    }
+
+
+    /**
+     * @param int $category_id
+     * @return array
+     */
+    public function getItemsInTopCategory(int $category_id): array
+    {
+        return $this->dBDRiver->select("SELECT ii.*,cc.name as category FROM `{$this->table_name}` ii
+                    LEFT JOIN `categories` cc ON ii.category_id=cc.id 
+                    WHERE ii.category_id IN (SELECT id FROM `categories` WHERE parent_id=:category_id)",compact('category_id'));
+    }
+
+    /**
+     * @param array $list
+     * @return array
+     */
+    public function getItemsInList(array $list): array
+    {
+        $items = implode(',',$list);
+
+        return $this->dBDRiver->select("SELECT ii.*,cc.name as category FROM `{$this->table_name}` ii
+                    LEFT JOIN `categories` cc ON ii.category_id=cc.id 
+                    WHERE ii.id IN ({$items})");
+
     }
 
     /**
