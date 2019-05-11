@@ -38,6 +38,9 @@ $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) 
     // Categories list
     $r->addRoute('GET', '/categories/{id:\d+}', AppController::class.'@category');
 
+    // Delivery
+    $r->addRoute('GET', '/delivery', AppController::class.'@delivery');
+
     //Admin routes, CRUD
     $r->addRoute('GET', '/admin/categories', AdminCategoriesController::class.'@index');
     $r->addRoute('GET', '/admin/categories/create', AdminCategoriesController::class.'@create');

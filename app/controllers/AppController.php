@@ -50,4 +50,9 @@ class AppController extends Controller
         $this->render('items/list.twig', compact('category','items'));
     }
 
+    public function delivery()
+    {
+        $this->render('delivery.twig',[]);
+    }
+
 }
