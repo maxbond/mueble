@@ -18,17 +18,20 @@
                     <td colspan="3">Сумма заказа {{ sum }} Р.</td>
                 </tr>
             </table>
+            {% if errors %}
+                <div class="alert alert-danger">Пожалуйста, заполните все обязательные поля формы</div>
+            {% endif %}
             <form method="post" action="/done" enctype="multipart/form-data">
                 <div class="form-group">
-                    <label for="zip">Индекс</label>
+                    <label for="zip">Индекс <span class="text-danger">*</span></label>
                     <input type="text" name="zip" id="zip" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label for="city">Город</label>
+                    <label for="city">Город <span class="text-danger">*</span></label>
                     <input type="text" name="city" id="city" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label for="address">Адрес доставки</label>
+                    <label for="address">Адрес доставки <span class="text-danger">*</span></label>
                     <input type="text" name="address" id="address" class="form-control">
                 </div>
                 <div class="form-group">

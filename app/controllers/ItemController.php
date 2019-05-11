@@ -48,9 +48,10 @@ class ItemController extends Controller
     public function basket()
     {
         $basket = $_SESSION['basket'] ?? [];
+        $errors = $this->get('errors');
         if(count($basket)){
             $items = $this->itemsRepository->getItemsInList($basket);
-            $this->render('items/basket.twig', compact('items'));
+            $this->render('items/basket.twig', compact('items','errors'));
         }else{
             $this->render('items/empty_basket.twig', compact('items'));
         }
@@ -73,6 +74,12 @@ class ItemController extends Controller
      */
     public function done()
     {
+        $input = $this->input(['zip','city','address']);
+        foreach ($input as $item){
+            if($item === '') {
+                $this->redirect('/basket?errors=true');
+            }
+        }
         session_destroy();
         $this->render('items/done.twig',[]);
     }
